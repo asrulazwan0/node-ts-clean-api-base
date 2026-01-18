@@ -1,19 +1,35 @@
+import pino, { Logger as PinoLogger } from 'pino';
+
 export interface Logger {
   info(message: string): void;
   error(message: string, error?: Error): void;
   warn(message: string): void;
 }
 
-export class ConsoleLogger implements Logger {
+export class PinoLoggerAdapter implements Logger {
+  private logger: PinoLogger;
+
+  constructor() {
+    this.logger = pino({
+      level: process.env.LOG_LEVEL || 'info',
+      transport: process.env.NODE_ENV !== 'production' ? {
+        target: 'pino-pretty',
+        options: {
+          colorize: true,
+        }
+      } : undefined
+    });
+  }
+
   info(message: string): void {
-    console.log(`[INFO] ${message}`);
+    this.logger.info(message);
   }
 
   error(message: string, error?: Error): void {
-    console.error(`[ERROR] ${message}`, error?.stack);
+    this.logger.error(error, message);
   }
 
   warn(message: string): void {
-    console.warn(`[WARN] ${message}`);
+    this.logger.warn(message);
   }
 }
