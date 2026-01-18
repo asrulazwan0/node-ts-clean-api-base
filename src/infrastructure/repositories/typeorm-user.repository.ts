@@ -1,5 +1,5 @@
-import { User } from '../../../domain/entities/User';
-import { AbstractUserRepository } from '../../../domain/user/repositories/user-repository';
+import { User } from '@domain/entities/User';
+import { AbstractUserRepository } from '@domain/user/repositories/user-repository';
 import { DatabaseConnection } from '../database/database-connection';
 import { UserEntity } from '../database/entities/user.entity';
 import { UserMapper } from '../mappers/user.mapper';

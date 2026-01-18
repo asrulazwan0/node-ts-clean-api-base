@@ -1,4 +1,4 @@
-import { User } from '../../../domain/entities/User';
+import { User } from '@domain/entities/User';
 import { UserEntity } from '../database/entities/user.entity';
 
 export class UserMapper {

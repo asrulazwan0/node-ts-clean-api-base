@@ -14,10 +14,15 @@ import { errorHandler } from './infrastructure/middleware/error-handler.middlewa
 import { validateRequest } from './infrastructure/middleware/validation.middleware';
 import { UserSchemas } from './application/validation/userSchemas';
 import { TypeOrmUserRepository } from './infrastructure/repositories/typeorm-user.repository';
+import { HealthController } from './infrastructure/http/controllers/health-controller';
+import { loadConfig } from './infrastructure/config/app-config';
 
 let server: any;
 
 async function bootstrap() {
+  // Load configuration
+  const config = loadConfig();
+
   // Create the DI container
   const container = createContainer();
 
@@ -28,6 +33,8 @@ async function bootstrap() {
     userRepository: asClass(TypeOrmUserRepository).singleton(),
     createUserUseCase: asClass(CreateUserUseCase).singleton(),
     userController: asClass(UserController).singleton(),
+    healthController: asClass(HealthController).singleton(),
+    config: asFunction(() => config).singleton(),
     requestLogger: asFunction((cradle) => requestLogger(cradle.logger)),
     errorHandler: asFunction((cradle) => errorHandler(cradle.logger))
   });
@@ -44,8 +51,8 @@ async function bootstrap() {
 
   // Rate limiting middleware
   const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
+    windowMs: config.RATE_LIMIT_WINDOW_MS, // Configurable window
+    max: config.RATE_LIMIT_MAX_REQUESTS, // Configurable max requests
     message: {
       error: 'Too many requests from this IP, please try again later.'
     },
@@ -61,18 +68,18 @@ async function bootstrap() {
   // Initialize dependencies
   const logger = container.cradle.logger;
   const userController = container.cradle.userController;
+  const healthController = container.cradle.healthController;
 
   // Register routes
+  app.get('/health', (req: Request, res: Response) => healthController.checkHealth(req, res));
   app.post('/users', validateRequest(UserSchemas.createUser), (req: Request, res: Response) => userController.createUser(req, res));
 
   // Error handling middleware (should be registered last)
   app.use(container.cradle.errorHandler);
 
-  const PORT = process.env.PORT || 3000;
-
   // Graceful shutdown handling
-  server = app.listen(PORT, () => {
-    logger.info(`Server is running on port ${PORT}`);
+  server = app.listen(config.PORT, () => {
+    logger.info(`Server is running on port ${config.PORT} in ${config.NODE_ENV} mode`);
     logger.info('Ready to accept requests');
   });
 
