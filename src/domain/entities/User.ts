@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { Result } from '../shared/Result';
 
 export interface UserProps {
@@ -25,7 +26,7 @@ export class User {
     this.updatedAt = props.updatedAt ?? new Date();
 
     // If no ID is provided, we'll generate one in the factory method
-    this.id = id ?? crypto.randomUUID();
+    this.id = id ?? randomUUID();
   }
 
   public static create(props: UserProps, id?: string): Result<User> {
