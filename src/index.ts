@@ -52,8 +52,8 @@ app.use(express.json());
 app.use(container.cradle.requestLogger);
 
 // Initialize dependencies
-const logger = container.resolve<PinoLoggerAdapter>('logger');
-const userController = container.resolve<UserController>('userController');
+const logger = container.cradle.logger;
+const userController = container.cradle.userController;
 
 // Register routes
 app.post('/users', (req: Request, res: Response) => userController.createUser(req, res));

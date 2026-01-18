@@ -31,29 +31,37 @@ export class Result<T = void> {
     return this.error!;
   }
 
-  public static success<T>(data?: T): Result<T> {
-    return new Result({
+  public static success<T>(data: T): Result<T> {
+    return new Result<T>({
       isSuccess: true,
       data,
       error: undefined,
     });
   }
 
-  public static failure<T>(error: Error | string): Result<T> {
-    return new Result({
+  public static successVoid(): Result<void> {
+    return new Result<void>({
+      isSuccess: true,
+      data: undefined,
+      error: undefined,
+    });
+  }
+
+  public static failure<T = unknown>(error: Error | string): Result<T> {
+    return new Result<T>({
       isSuccess: false,
       data: undefined,
       error,
     });
   }
 
-  public static combine(results: Result[]): Result<void> {
+  public static combine(results: Array<Result<any>>): Result<void> {
     for (const result of results) {
       if (!result.isSuccess) {
-        return Result.failure(result.error);
+        return Result.failure<void>(result.error!);
       }
     }
-    return Result.success();
+    return Result.successVoid();
   }
 }
 

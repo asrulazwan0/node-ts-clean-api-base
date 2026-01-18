@@ -23,7 +23,7 @@ export class User {
     this.password = props.password;
     this.createdAt = props.createdAt ?? new Date();
     this.updatedAt = props.updatedAt ?? new Date();
-    
+
     // If no ID is provided, we'll generate one in the factory method
     this.id = id ?? crypto.randomUUID();
   }
@@ -54,7 +54,7 @@ export class User {
     return Result.success(user);
   }
 
-  public updateDetails(name: string, email: string): Result<void> {
+  public updateDetails(name: string, email: string): Result<User> {
     if (!email || !email.includes('@')) {
       return Result.failure('Invalid email address');
     }
@@ -63,14 +63,17 @@ export class User {
       return Result.failure('Name cannot be empty');
     }
 
-    this.name = name;
-    this.email = email;
-    this.updatedAt = new Date();
+    const updatedUser = new User({
+      ...this,
+      name,
+      email,
+      updatedAt: new Date()
+    }, this.id);
 
-    return Result.success();
+    return Result.success(updatedUser);
   }
 
-  public changePassword(currentPassword: string, newPassword: string): Result<void> {
+  public changePassword(currentPassword: string, newPassword: string): Result<User> {
     if (currentPassword === newPassword) {
       return Result.failure('New password must be different from current password');
     }
@@ -79,9 +82,12 @@ export class User {
       return Result.failure('Password must be at least 6 characters');
     }
 
-    this.password = newPassword;
-    this.updatedAt = new Date();
+    const updatedUser = new User({
+      ...this,
+      password: newPassword,
+      updatedAt: new Date()
+    }, this.id);
 
-    return Result.success();
+    return Result.success(updatedUser);
   }
 }

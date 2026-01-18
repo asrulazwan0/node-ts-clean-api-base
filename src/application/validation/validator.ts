@@ -8,7 +8,7 @@ export class Validator {
       return Result.success(parsedData);
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const errorMessages = error.errors.map((err) => err.message).join(', ');
+        const errorMessages = error.issues.map((issue) => issue.message).join(', ');
         return Result.failure(errorMessages);
       }
       return Result.failure('Validation failed');
