@@ -1,6 +1,6 @@
 # First public release launch plan
 
-Prepared: 2026-10-03. Status: execution authorized by the user on 2026-10-03; candidate preparation and verification in progress.
+Prepared: 2026-10-03. Status: execution authorized; candidate verification complete; source publication/adopter trial in progress.
 
 This document plans publication of the implemented starter. [Release scope](release-plan.md) defines its features; [the readiness tracker](release-checklist.md) remains authoritative for acceptance. The current local implementation candidate is `48a6812` on `release/starter-readiness`.
 
@@ -41,26 +41,26 @@ The user approved proceeding with this version sequence on 2026-10-03. Existing 
 - [x] Set package and lockfile versions to `1.0.0-rc.1` with `npm version 1.0.0-rc.1 --no-git-tag-version`.
 - [x] Move verified changelog entries into a dated release-candidate section; retain compatibility notes and the advisory exception.
 - [x] Run checks affected by metadata/documentation changes and commit the candidate preparation.
-- [ ] Push `release/starter-readiness` and open a pull request against `main`.
+- [x] Push `release/starter-readiness` and open a pull request against `main`.
 
 The current CI configuration runs for `pull_request`, pushes to `main`, and manual dispatch. A branch push alone does not trigger it. Opening the PR supplies the candidate CI run; publishing is not part of this step.
 
 ### 2. Complete candidate verification
 
-- [ ] Inspect all seven CI checks: Quality and PostgreSQL; native tests on Ubuntu, macOS, and Windows; Production container smoke; Isolated container tests; Secret scan.
-- [ ] Fix failures in small focused commits and inspect the new checks.
-- [ ] From a clean checkout of the exact candidate, verify native startup/migrations/smoke/shutdown and Docker development/source reload. Use isolated PostgreSQL and scoped cleanup.
-- [ ] Record full commit SHA, CI run links, versions, commands, outcomes, and remaining platform limits in [verification evidence](verification-evidence.md).
-- [ ] Complete R32 only when its exact-candidate acceptance evidence exists.
+- [x] Inspect all seven CI checks: Quality and PostgreSQL; native tests on Ubuntu, macOS, and Windows; Production container smoke; Isolated container tests; Secret scan.
+- [x] Fix failures in small focused commits and inspect the new checks.
+- [x] From a clean checkout of the exact candidate, verify native startup/migrations/smoke/shutdown and Docker development/source reload. Use isolated PostgreSQL and scoped cleanup.
+- [x] Record full commit SHA, CI run links, versions, commands, outcomes, and remaining platform limits in [verification evidence](verification-evidence.md).
+- [x] Complete R32 only when its exact-candidate acceptance evidence exists.
 
 A green native test/build matrix does not establish PostgreSQL installation or full runtime smoke on macOS/Windows. Keep those limits explicit unless separately exercised. The final main/tag commit must have passing corresponding checks; do not tag a newer unverified commit.
 
 ### 3. Configure the public repository
 
-- [ ] Enable template mode and verify GitHub displays “Use this template.”
+- [x] Enable template mode and verify GitHub reports `is_template: true`.
 - [x] Enable private vulnerability reporting; verify its status and update [SECURITY.md](../SECURITY.md).
-- [ ] Set the accurate repository description above; confirm GitHub detects the ISC license after the candidate lands.
-- [ ] Configure a rule protecting `main`: require PR review and the successful CI checks; prevent force pushes/deletion. Confirm exact check names from real runs and maintainer access before applying the rule.
+- [x] Set the accurate repository description above; confirm GitHub detects the ISC license after the candidate lands.
+- [x] Configure protection for `main`: require PRs and all seven strict CI checks, resolve conversations, prevent force pushes/deletion, and enforce for admins. With only one administrator and no independent reviewer, require zero independent approvals; increase this when another reviewer becomes available.
 
 These are repository-setting changes and require authorization. A 404 inspection result alone does not establish which protection features the account can configure.
 
@@ -100,3 +100,5 @@ The user approved executing this source release plan on 2026-10-03, including ca
 ## Execution evidence
 
 2026-10-03: owner-scoped GitHub credentials verified with ADMIN access. Template mode enabled, accurate description applied, and private vulnerability reporting enabled (API reports `enabled: true`). `npm run check` passed for release-candidate preparation (64 unit and 15 HTTP tests, formatting, lint, types, build). These are current changes; the inspection table above preserves the pre-execution snapshot.
+
+2026-10-03: candidate `49e362cb66a249118bb53416f6f8ce5f2aecfa12` passed all seven [CI checks](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37128774175) and clean-checkout native/Docker-development validation. Main protection is active with the sole-maintainer approval-count decision documented above. R01–R33 are satisfied; publication and adopter trial remain.

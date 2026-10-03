@@ -1,6 +1,6 @@
 # Development and release tracking
 
-Status as of 2026-10-03: **local implementation and workflow verification complete; final candidate/remote release gates pending**.
+Status as of 2026-10-03: **candidate verified locally and in GitHub CI; source publication/adopter trial in progress**.
 
 This repository is intended to be a reusable TypeScript/Express/PostgreSQL starter with working native and Docker workflows. The initial audit found runtime and setup blockers despite a passing build and two passing tests. Those defects have been repaired; the tracker records current verification and remaining release gates.
 
@@ -15,7 +15,7 @@ This repository is intended to be a reusable TypeScript/Express/PostgreSQL start
 | [Release checklist](docs/release-checklist.md)       | Authoritative task status, finding IDs, acceptance requirements, and evidence log          |
 | [ECC workflow](docs/ecc-workflow.md)                 | Installed skill mapping and the implementation/review process                              |
 
-Use the release checklist for the next incomplete task. M1–M4 are locally implemented and verified; final release requires an approved committed candidate, remote CI, and repository security settings.
+Use the release checklist for the next incomplete task. R01–R33 are complete for the committed candidate with passing remote CI and verified repository settings. Follow the release launch plan for publication and adopter trial.
 
 Docker may be used for development and testing. The starter must also run directly with Node.js and PostgreSQL without requiring Docker or ECC.
 

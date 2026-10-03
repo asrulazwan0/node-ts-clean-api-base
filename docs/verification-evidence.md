@@ -1,8 +1,8 @@
 # Local verification evidence
 
-Date: 2026-10-03. Context: working tree based on `b4244c2`, including the authorized starter-readiness changes. The evidence below was gathered before the local candidate commit. No push, tag, publication, or deployment has been performed.
+Date: 2026-10-03. Context: working tree based on `b4244c2`, including the authorized starter-readiness changes. The initial evidence below was gathered before the local candidate commit. Subsequent candidate/remote verification is recorded at the end of this document.
 
-This evidence supports local implementation readiness. R32 remains incomplete until an approved candidate commit is verified and corresponding remote checks are inspected.
+Initial local evidence supports implementation readiness. The candidate verification section records the exact-commit evidence satisfying R32.
 
 ## Environment
 
@@ -41,7 +41,7 @@ The first Docker test attempt exposed non-root write permissions and returned ex
 
 No remaining locally reproduced runtime/data-integrity blocker was found after the fixes. The unresolved glob-parser advisory has no patched release and is not reachable from HTTP input under the current explicit registration/build setup; its narrowly scoped exception expires on 2026-11-03. See [dependency security](dependency-security.md). This is not a clean raw dependency audit.
 
-## External repository inspection
+## Initial external repository inspection
 
 Read-only GitHub inspection found:
 
@@ -65,3 +65,13 @@ The snapshot does not replace an immutable candidate commit or GitHub CI results
 ## Verification cleanup
 
 The production container stopped gracefully with exit code 0. Both owned production/development Compose projects and their disposable volumes were removed, as was the standalone verification database. Other existing services were left running. All 86 implementation/configuration/root-public-document files still match the verified source snapshot.
+
+## Committed release-candidate verification
+
+Candidate: `49e362cb66a249118bb53416f6f8ce5f2aecfa12` (`1.0.0-rc.1`), PR [#1](https://github.com/asrulazwan0/node-ts-clean-api-base/pull/1). [CI run 37128774175](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37128774175) completed successfully with all seven checks: quality/PostgreSQL, Ubuntu/macOS/Windows native tests, production Docker smoke, isolated Docker tests, and history secret scan. PostgreSQL and Docker coverage each passed all 86 tests. Coverage differs slightly by Node/V8 environment; all four enforced thresholds passed. The audit policy passed with seven entries from the single reviewed advisory and no unreviewed/expired findings.
+
+A clean detached checkout of this exact commit passed `npm ci`, `npm run check`, and full coverage (86 tests; 92.08% statements, 89.16% branches, 93.58% functions, 91.40% lines). Source migrations and native development smoke/reload passed. Compiled production startup read the checkout's synthetic `.env`, smoke passed, and SIGTERM exited 0. Docker development applied migrations to an empty owned volume, reached readiness, and passed smoke before/after source reload. All owned test containers/volumes were removed.
+
+Repository settings are now verified: template enabled; private vulnerability reporting enabled; accurate description applied. Main protection requires PRs, all seven strict CI checks, and conversation resolution, including for admins; force pushes/deletion disabled. There is only one administrator and no independent reviewer, so the required approval count is zero. Add an approval requirement when another reviewer is available. No protection was bypassed for candidate verification.
+
+Native tests/types/build are verified remotely on macOS and Windows. Full PostgreSQL installation/runtime startup on those platforms remains untested. Public tags/releases are a later step, after final merge checks and source-archive/template trial.

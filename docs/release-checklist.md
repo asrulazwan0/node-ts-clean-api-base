@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-03.
 
-Overall status: **local implementation verified; final candidate verification and remote release gates pending**.
+Overall status: **candidate verified locally and in GitHub CI; publication and adopter trial in progress**.
 
 This is the authoritative tracker. `[x]` means implemented and verified, with evidence below or in a linked record. `[ ]` means remaining, including work in progress. A file or dependency merely existing is not completion. Initial audit passes do not satisfy final release checks.
 
@@ -59,7 +59,7 @@ This is the authoritative tracker. `[x]` means implemented and verified, with ev
 - [x] R29 — Document migration recovery, backup expectations, deployment configuration, and artifact/image usage. (F05, F10)
 - [x] R30 — Review template metadata and tracked files; keep personal tooling, private values, and stale instructions out of the public template. (F13, F17)
 - [x] R31 — Perform final ECC security/readiness review; resolve all blockers/high-priority findings and record remaining low-risk limitations.
-- [ ] R32 — Verify clean-checkout native and Docker workflows on the exact release candidate; record commit, versions, commands, and results.
+- [x] R32 — Verify clean-checkout native and Docker workflows on the exact release candidate; record commit, versions, commands, and results.
 - [x] R33 — Verify available CI results and repository release settings; identify any external settings that remain unverified.
 
 ## Required mode evidence
@@ -89,10 +89,12 @@ For each completed implementation item, append the candidate commit or worktree 
 ## Release decision
 
 - Candidate: local commit containing this tracker on `release/starter-readiness`, authorized on 2026-10-03 (`git log -1 --format=%H` for its exact ID). No tag selected; source snapshot verification is preliminary evidence only.
-- Required checklist items complete: 32 of 33; R32 requires verification of the committed candidate and remote checks.
+- Required checklist items complete: 33 of 33; exact candidate and remote CI evidence recorded.
 - Native and Docker workflows verified: yes on Linux, with the limits recorded above.
 - Local security/readiness review complete: yes; [one expiring upstream advisory exception](dependency-security.md) remains.
-- Remote release gates: candidate CI green; private reporting configured; template and branch-protection settings reviewed/applied as authorized.
-- External publishing/deployment action: not performed.
+- Remote release gates: candidate CI green; private reporting and template enabled; strict main protection applied (zero independent approvals for the sole-maintainer repository).
+- Publishing: pending source release/adopter trial. Application deployment: outside scope.
 
 Do not mark this starter release-ready until R01–R33 are verified, or a requirement is explicitly revised with a documented reason and equivalent acceptance evidence.
+
+Candidate acceptance completed on 2026-10-03 for `49e362cb66a249118bb53416f6f8ce5f2aecfa12`; [remote CI](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37128774175) and clean-checkout native/Docker evidence are in [verification evidence](verification-evidence.md). The earlier evidence table preserves the initial inspection state.
