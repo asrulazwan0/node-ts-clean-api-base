@@ -1,35 +1,51 @@
-import { User } from '@domain/entities/User';
-import { AbstractUserRepository } from '@domain/user/repositories/user-repository';
-import { DatabaseConnection } from '../database/database-connection';
+import type { Repository } from 'typeorm';
+import { QueryFailedError } from 'typeorm';
+import type { User } from '../../domain/entities/User';
+import type { IUserRepository } from '../../domain/repositories/IUserRepository';
+import { Result, internalError, emailConflict } from '../../domain/shared/Result';
+import type { DatabaseConnection } from '../database/database-connection';
 import { UserEntity } from '../database/entities/user.entity';
 import { UserMapper } from '../mappers/user.mapper';
 
-export class TypeOrmUserRepository extends AbstractUserRepository {
-  private userRepository: any;
+export class TypeOrmUserRepository implements IUserRepository {
+  private readonly userRepository: Repository<UserEntity>;
 
   constructor(databaseConnection: DatabaseConnection) {
-    super();
     this.userRepository = databaseConnection.getDataSource().getRepository(UserEntity);
   }
 
-  async save(user: User): Promise<void> {
-    const userEntity = UserMapper.toEntity(user);
-    await this.userRepository.save(userEntity);
+  async save(user: User): Promise<Result<void>> {
+    try {
+      await this.userRepository.insert(UserMapper.toEntity(user));
+      return Result.success(undefined);
+    } catch (error) {
+      if (
+        error instanceof QueryFailedError &&
+        error.driverError.code === '23505' &&
+        error.driverError.constraint === 'UQ_users_email'
+      ) {
+        return Result.failure(emailConflict());
+      }
+      return Result.failure(internalError());
+    }
   }
 
-  async findByEmail(email: string): Promise<User | null> {
-    const userEntity = await this.userRepository.findOneBy({ email });
-    if (!userEntity) {
-      return null;
-    }
-    return UserMapper.toDomain(userEntity);
+  async findByEmail(email: string): Promise<Result<User | null>> {
+    return this.findOne({ email });
   }
 
-  async findById(id: string): Promise<User | null> {
-    const userEntity = await this.userRepository.findOneBy({ id });
-    if (!userEntity) {
-      return null;
+  async findById(id: string): Promise<Result<User | null>> {
+    return this.findOne({ id });
+  }
+
+  private async findOne(
+    criteria: { id: string } | { email: string },
+  ): Promise<Result<User | null>> {
+    try {
+      const entity = await this.userRepository.findOneBy(criteria);
+      return Result.success(entity ? UserMapper.toDomain(entity) : null);
+    } catch {
+      return Result.failure(internalError());
     }
-    return UserMapper.toDomain(userEntity);
   }
 }

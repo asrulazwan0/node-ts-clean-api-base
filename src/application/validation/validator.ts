@@ -1,19 +1,17 @@
-import { z, ZodSchema } from 'zod';
+import type { ZodType } from 'zod';
 import { Result } from '../../domain/shared/Result';
 
 export class Validator {
-  static validate<T>(schema: ZodSchema<T>, data: unknown): Result<T> {
-    try {
-      const parsedData = schema.parse(data);
-      return Result.success(parsedData);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const errorMessages = error.issues.map((issue) => issue.message).join(', ');
-        return Result.failure(errorMessages);
-      }
-      return Result.failure('Validation failed');
-    }
+  static validate<T>(schema: ZodType<T>, data: unknown): Result<T> {
+    const parsed = schema.safeParse(data);
+    if (parsed.success) return Result.success(parsed.data);
+    return Result.failure({
+      code: 'VALIDATION_ERROR',
+      message: 'Request validation failed',
+      details: parsed.error.issues.map((issue) => ({
+        field: issue.path.join('.'),
+        message: issue.message,
+      })),
+    });
   }
 }
-
-export default Validator;

@@ -1,56 +1,37 @@
 import { describe, it, expect } from 'vitest';
 import { User } from '../../entities/User';
 
-describe('User Entity', () => {
-  it('should create a user with valid properties', () => {
-    const email = 'test@example.com';
-    const name = 'Test User';
-    const password = 'securePassword123';
-    const userResult = User.create({
-      email,
-      name,
-      password,
-    });
-
-    expect(userResult).toBeDefined();
-    expect(userResult.isSuccess).toBe(true);
-
-    if (userResult.isSuccess) {
-      const user = userResult.getValue();
-      expect(user.id).toBeDefined();
-      expect(user.email).toBe(email);
-      expect(user.name).toBe(name);
-      expect(user.password).toBe(password);
-      expect(user.createdAt).toBeInstanceOf(Date);
-    }
+describe('User profile', () => {
+  it('normalizes profile fields without credentials', () => {
+    const result = User.create({ email: '  Test@Example.com ', name: ' Test User ' });
+    expect(result.success).toBe(true);
+    if (!result.success) throw new Error('Expected success');
+    expect(result.data.email).toBe('test@example.com');
+    expect(result.data.name).toBe('Test User');
+    expect(result.data).not.toHaveProperty('password');
+    expect(result.data.id).toMatch(/^[a-f0-9-]{36}$/);
   });
 
-  it('should allow email, name and password updates', () => {
-    const email = 'test@example.com';
-    const name = 'Test User';
-    const password = 'securePassword123';
-    const userResult = User.create({
-      email,
-      name,
-      password,
+  it.each([
+    { email: 'invalid', name: 'User' },
+    { email: 'a@example.com', name: '   ' },
+    { email: 'a@example.com', name: 'x'.repeat(101) },
+  ])('rejects invalid profile %j', (input) => {
+    expect(User.create(input)).toMatchObject({
+      success: false,
+      error: { code: 'VALIDATION_ERROR' },
     });
+  });
 
-    expect(userResult.isSuccess).toBe(true);
-
-    if (userResult.isSuccess) {
-      const user = userResult.getValue();
-
-      const newEmail = 'newemail@example.com';
-      const newName = 'Updated Name';
-      const newPassword = 'newSecurePassword456';
-      const updatedUserResult = user.updateDetails(newName, newEmail);
-
-      expect(updatedUserResult.isSuccess).toBe(true);
-      if (updatedUserResult.isSuccess) {
-        const updatedUser = updatedUserResult.getValue();
-        expect(updatedUser.email).toBe(newEmail);
-        expect(updatedUser.name).toBe(newName);
-      }
-    }
+  it('preserves persisted identity and timestamps', () => {
+    const createdAt = new Date('2024-01-01');
+    const updatedAt = new Date('2024-02-01');
+    const result = User.create(
+      { email: 'a@example.com', name: 'A', createdAt, updatedAt },
+      'existing-id',
+    );
+    expect(result.success).toBe(true);
+    if (!result.success) throw new Error('Expected success');
+    expect(result.data).toMatchObject({ id: 'existing-id', createdAt, updatedAt });
   });
 });
