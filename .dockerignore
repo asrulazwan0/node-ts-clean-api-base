@@ -1,0 +1,19 @@
+node_modules
+dist
+coverage
+.git
+.env
+.env.*
+!.env.example
+!.env.test.example
+*.log
+.agent
+.qwen
+.codex
+.idea
+.vscode
+QWEN.md
+note.md
+Implementation Plan.md
+tmp
+temp

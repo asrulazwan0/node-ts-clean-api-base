@@ -1,10 +1,8 @@
-import { User } from '../entities/User';
-import { Result } from '../shared/Result';
+import type { User } from '../entities/User';
+import type { Result } from '../shared/Result';
 
 export interface IUserRepository {
-  findById(id: string): Promise<Result<User>>;
-  findByEmail(email: string): Promise<Result<User>>;
+  findById(id: string): Promise<Result<User | null>>;
+  findByEmail(email: string): Promise<Result<User | null>>;
   save(user: User): Promise<Result<void>>;
-  update(user: User): Promise<Result<void>>;
-  delete(id: string): Promise<Result<void>>;
 }

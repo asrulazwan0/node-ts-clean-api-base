@@ -1,0 +1,28 @@
+# Combine explicitly: docker compose -f docker-compose.yml -f compose.dev.yml up --build
+services:
+  migrate:
+    build:
+      target: development
+    environment:
+      NODE_ENV: development
+    command: ['npm', 'run', 'migration:run']
+  app:
+    build:
+      target: development
+    environment:
+      NODE_ENV: development
+    command: ['npm', 'run', 'dev']
+    volumes:
+      - ./src:/app/src:ro
+    read_only: false
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:3000/health/ready',{signal:AbortSignal.timeout(3000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10

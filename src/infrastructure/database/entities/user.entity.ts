@@ -1,19 +1,20 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, Unique } from 'typeorm';
 
 @Entity('users')
+@Unique('UQ_users_email', ['email'])
 export class UserEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ type: 'uuid' })
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'varchar', length: 254 })
   email!: string;
 
-  @Column()
+  @Column({ type: 'varchar', length: 100 })
   name!: string;
 
-  @Column()
-  password!: string;
-
-  @CreateDateColumn()
+  @Column({ type: 'timestamptz' })
   createdAt!: Date;
+
+  @Column({ type: 'timestamptz' })
+  updatedAt!: Date;
 }

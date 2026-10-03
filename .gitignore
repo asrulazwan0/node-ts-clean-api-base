@@ -50,3 +50,14 @@ Thumbs.db
 
 # TypeScript
 tsconfig.tsbuildinfo
+# Local environment variants (keep documented examples)
+.env.*
+!.env.example
+!.env.*.example
+
+# Personal agent/tooling files
+.agent/
+.qwen/
+QWEN.md
+note.md
+Implementation Plan.md

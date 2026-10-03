@@ -1,34 +1,25 @@
-import { Request, Response } from 'express';
-import { PinoLoggerAdapter } from '../../logging/logger';
+import { type Request, type Response } from 'express';
+import { type Logger } from '../../logging/logger';
+import { type AppConfig } from '../../config/app-config';
+import { type DatabaseConnection } from '../../database/database-connection';
 
 export class HealthController {
-  constructor(private logger: PinoLoggerAdapter) {}
+  constructor(
+    private readonly logger: Logger,
+    private readonly config: AppConfig,
+    private readonly database: Pick<DatabaseConnection, 'isReady'>,
+  ) {}
 
-  async checkHealth(req: Request, res: Response) {
-    try {
-      // Perform any necessary health checks here
-      // For example, database connectivity, external service availability, etc.
-      
-      const healthCheck = {
-        uptime: process.uptime(),
-        message: 'OK',
-        timestamp: Date.now(),
-        version: process.env.npm_package_version || 'unknown',
-        environment: process.env.NODE_ENV || 'unknown',
-      };
+  checkLiveness(_req: Request, res: Response): void {
+    res.status(200).json({ status: 'ok' });
+  }
 
-      this.logger.info('Health check requested', { timestamp: healthCheck.timestamp });
-
-      res.status(200).send(healthCheck);
-    } catch (error) {
-      this.logger.error('Health check failed', { error: (error as Error).message });
-
-      res.status(503).send({
-        uptime: process.uptime(),
-        message: 'Service Unavailable',
-        timestamp: Date.now(),
-        error: (error as Error).message,
-      });
-    }
+  async checkReadiness(_req: Request, res: Response): Promise<void> {
+    const ready = await this.database.isReady();
+    if (!ready) this.logger.warn('Readiness check failed');
+    res.status(ready ? 200 : 503).json({
+      status: ready ? 'ok' : 'unavailable',
+      environment: this.config.NODE_ENV,
+    });
   }
 }
