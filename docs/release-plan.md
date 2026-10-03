@@ -1,6 +1,6 @@
 # Stable starter release plan
 
-Status: implementation and candidate verification complete, release candidate published, archive/template adopter trial passed. Stable metadata/publication checks are tracked in the launch plan.
+Status: complete. Stable `v1.0.0` and its prerelease are published; exact-candidate CI, repository settings, and archive/template adoption evidence are recorded in the launch plan and verification evidence.
 
 The proposed GitHub release-candidate and stable publication sequence is recorded in [release-launch-plan.md](release-launch-plan.md), including the current repository inspection and remaining external gates.
 

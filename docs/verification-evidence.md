@@ -85,3 +85,11 @@ The downloaded GitHub source archive and a project generated through GitHub's te
 Private validation repository: `asrulazwan0/node-ts-clean-api-base-release-validation-20261003`. It is retained privately as an archived verification record, with Actions disabled; no user repository was deleted. New adopters must replace package/repository/security metadata as described in README.
 
 Stable preparation promotes the same runtime source to package version `1.0.0`, updates release/security/contributor documentation, and requires fresh CI on its reviewed commit. Final stable tag/CI/archive evidence will be recorded after publication.
+
+## Stable release completion
+
+Published on 2026-10-03: [v1.0.0](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v1.0.0), tag target `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4`. The stable PR [#10](https://github.com/asrulazwan0/node-ts-clean-api-base/pull/10) passed [CI 37129823104](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37129823104); the resulting tagged main commit passed all seven checks in [CI 37129975818](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37129975818), including the 86-test PostgreSQL/container suites.
+
+The published stable source archive matched every tracked file at the tag, installed with `npm ci`, and passed `npm run check`. Native development environment loading/migrations/HTTP smoke and fresh-volume Docker production migration/readiness/HTTP smoke passed from that archive. Owned processes, containers, and volumes were cleaned up. The previously verified template generation remains applicable: runtime/tooling/container/CI source is unchanged, and GitHub's template entry point now serves the stable main branch.
+
+R01–R33 and the launch sequence are complete. Post-release tracker updates change only documentation and do not move the published tag. Native PostgreSQL installation/runtime smoke on macOS/Windows is still unverified, and the documented advisory exception still expires on 2026-11-03. No npm package, registry image, or application deployment was published.

@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-03.
 
-Overall status: **all readiness requirements verified; release candidate published and adopter trial passed; stable preparation in progress**.
+Overall status: **complete — v1.0.0 published; all 33 readiness items and source/template trials verified**.
 
 This is the authoritative tracker. `[x]` means implemented and verified, with evidence below or in a linked record. `[ ]` means remaining, including work in progress. A file or dependency merely existing is not completion. Initial audit passes do not satisfy final release checks.
 
@@ -88,12 +88,12 @@ For each completed implementation item, append the candidate commit or worktree 
 
 ## Release decision
 
-- Verified prerelease: `v1.0.0-rc.1` at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557`; stable version `1.0.0` is being prepared with unchanged runtime code.
+- Stable release: `v1.0.0` at `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4`; prerelease `v1.0.0-rc.1` retained at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557`.
 - Required checklist items complete: 33 of 33; exact candidate and remote CI evidence recorded.
 - Native and Docker workflows verified: yes on Linux, with the limits recorded above.
 - Local security/readiness review complete: yes; [one expiring upstream advisory exception](dependency-security.md) remains.
 - Remote release gates: candidate CI green; private reporting and template enabled; strict main protection applied (zero independent approvals for the sole-maintainer repository).
-- Publishing: RC source release and archive/template trial complete; stable publication pending. Application deployment: outside scope.
+- Publishing: RC and stable GitHub source releases complete; archive/template trial passed. Application deployment: outside scope.
 
 Do not mark this starter release-ready until R01–R33 are verified, or a requirement is explicitly revised with a documented reason and equivalent acceptance evidence.
 
