@@ -6,13 +6,14 @@ This repository is intended to be a reusable TypeScript/Express/PostgreSQL start
 
 ## Documentation map
 
-| Document                                             | Purpose                                                                                 |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [Readiness assessment](docs/readiness-assessment.md) | Existing features, reproduced failures, source references, and verification limits      |
-| [Release plan](docs/release-plan.md)                 | Scope decisions, five milestones, and the definition of release-ready                   |
-| [Development workflow](docs/development-workflow.md) | Native, hybrid, Docker development/testing/production requirements and planned commands |
-| [Release checklist](docs/release-checklist.md)       | Authoritative task status, finding IDs, acceptance requirements, and evidence log       |
-| [ECC workflow](docs/ecc-workflow.md)                 | Installed skill mapping and the implementation/review process                           |
+| Document                                             | Purpose                                                                                    |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [Readiness assessment](docs/readiness-assessment.md) | Existing features, reproduced failures, source references, and verification limits         |
+| [Release plan](docs/release-plan.md)                 | Scope decisions, five milestones, and the definition of release-ready                      |
+| [Release launch plan](docs/release-launch-plan.md)   | GitHub inspection, candidate/stable versions, CI, template setup, and publication sequence |
+| [Development workflow](docs/development-workflow.md) | Native, hybrid, Docker development/testing/production requirements and planned commands    |
+| [Release checklist](docs/release-checklist.md)       | Authoritative task status, finding IDs, acceptance requirements, and evidence log          |
+| [ECC workflow](docs/ecc-workflow.md)                 | Installed skill mapping and the implementation/review process                              |
 
 Use the release checklist for the next incomplete task. M1–M4 are locally implemented and verified; final release requires an approved committed candidate, remote CI, and repository security settings.
 

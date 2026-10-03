@@ -4,6 +4,10 @@ Changes are recorded here before a release is tagged. The existing package versi
 
 ## Unreleased
 
+No changes recorded yet.
+
+## 1.0.0-rc.1 — 2026-10-03
+
 ### Added
 
 - Standardized the supported baseline on Node.js 24, npm 11, and PostgreSQL 16.
@@ -32,4 +36,4 @@ Changes are recorded here before a release is tagged. The existing package versi
 - Existing databases created through automatic synchronization require a reviewed adoption migration and data-retention decision. Do not drop tables or data to force the initial migration to run.
 - HTTP clients must use the documented success/error envelopes in [the API specification](openapi.json).
 
-Before tagging, replace this preparation entry with the actual verified changes, selected release version/date, and any additional upgrade instructions.
+This release candidate establishes the first verified baseline. Consult the release tracker for candidate CI and publication evidence.

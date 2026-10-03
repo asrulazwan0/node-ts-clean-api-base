@@ -8,9 +8,9 @@ Release preparation is in progress; see [the readiness tracker](docs/release-che
 
 ## Reporting a vulnerability
 
-As inspected on 2026-10-03, GitHub private vulnerability reporting is disabled for this repository, and no alternative private contact has been verified. Maintainers must enable and verify a private reporting channel before a public stable release. After it is enabled, use **Security → Advisories → Report a vulnerability** for private reports. Do not put credentials, sensitive data, or exploitable vulnerability details in public issues.
+GitHub private vulnerability reporting was enabled and verified for this repository on 2026-10-03. Use **Security → Advisories → Report a vulnerability** for private reports. Do not put credentials, sensitive data, or exploitable vulnerability details in public issues.
 
-While private reporting is unavailable, open only a minimal, non-sensitive public issue requesting a private security contact, without including vulnerability details. No unverified email address is provided here. Repositories created from this template must configure their own reporting channel and replace this repository-specific status.
+Repositories created from this template must configure their own reporting channel and replace this repository-specific policy.
 
 A private report should describe the affected version/commit, impact, minimal reproduction using synthetic data, and any suggested fix. Remove secrets and personal information from logs or attachments.
 

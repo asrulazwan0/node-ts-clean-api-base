@@ -2,6 +2,8 @@
 
 Status: core implementation completed locally; final candidate and repository release gates remain. See the release checklist for verified evidence and pending work.
 
+The proposed GitHub release-candidate and stable publication sequence is recorded in [release-launch-plan.md](release-launch-plan.md), including the current repository inspection and remaining external gates.
+
 ## Product contract
 
 A new project using this stack can start from this repository without repairing framework wiring, inventing a database lifecycle, or depending on the author's machine. Docker is supported for development, testing, and production packaging. Native Node.js with a separately supplied PostgreSQL instance is equally supported and does not require Docker.
