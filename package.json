@@ -1,6 +1,6 @@
 {
   "name": "ts-clean-api-base",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "A tested TypeScript and Express API starter with PostgreSQL, clean architecture, native development, and Docker workflows.",
   "main": "dist/index.js",
   "scripts": {

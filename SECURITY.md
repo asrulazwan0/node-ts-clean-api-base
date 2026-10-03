@@ -4,7 +4,7 @@ This is a minimal API starter. It does not implement authentication, authorizati
 
 ## Supported versions
 
-Release preparation is in progress; see [the readiness tracker](docs/release-checklist.md). Once a verified release is published, security fixes target the latest published release. There is no commitment to backport fixes to older versions or to a fixed response time.
+Security fixes target the latest published release; see [GitHub releases](https://github.com/asrulazwan0/node-ts-clean-api-base/releases) and [the readiness tracker](docs/release-checklist.md). There is no commitment to backport fixes to older versions or to a fixed response time.
 
 ## Reporting a vulnerability
 

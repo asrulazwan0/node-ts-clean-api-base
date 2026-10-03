@@ -75,3 +75,13 @@ A clean detached checkout of this exact commit passed `npm ci`, `npm run check`,
 Repository settings are now verified: template enabled; private vulnerability reporting enabled; accurate description applied. Main protection requires PRs, all seven strict CI checks, and conversation resolution, including for admins; force pushes/deletion disabled. There is only one administrator and no independent reviewer, so the required approval count is zero. Add an approval requirement when another reviewer is available. No protection was bypassed for candidate verification.
 
 Native tests/types/build are verified remotely on macOS and Windows. Full PostgreSQL installation/runtime startup on those platforms remains untested. Public tags/releases are a later step, after final merge checks and source-archive/template trial.
+
+## Published prerelease and adopter trial
+
+`v1.0.0-rc.1` was published on 2026-10-03 at verified main commit `a9f79ef063b3673da34b0dd34f70b8c03b9cb557` after [main CI 37129280420](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37129280420) passed. GitHub detects the ISC license. [Prerelease](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v1.0.0-rc.1).
+
+The downloaded GitHub source archive and a project generated through GitHub's template API each passed `npm ci`, `npm run check` (64 unit and 15 HTTP tests plus formatting/lint/types/build), and native/Docker smoke. Each production Compose stack applied migrations to a fresh owned volume and reached readiness; the native development process loaded its own synthetic `.env`, ran migration commands, and passed HTTP smoke against that independently supplied PostgreSQL. All owned processes, containers, and volumes were cleaned up. No trial blocker was found.
+
+Private validation repository: `asrulazwan0/node-ts-clean-api-base-release-validation-20261003`. It is retained privately as an archived verification record, with Actions disabled; no user repository was deleted. New adopters must replace package/repository/security metadata as described in README.
+
+Stable preparation promotes the same runtime source to package version `1.0.0`, updates release/security/contributor documentation, and requires fresh CI on its reviewed commit. Final stable tag/CI/archive evidence will be recorded after publication.

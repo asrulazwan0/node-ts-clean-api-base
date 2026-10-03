@@ -20,7 +20,7 @@ Skill names below were checked against the installed ECC 2.2.3 catalog. They are
 | Credentials, input, logs, configuration                    | `ecc:security-review`     | Review relevant attack surfaces and resolve findings            |
 | Final release readiness                                    | `ecc:production-audit`    | Evidence-based release recommendation and remaining limitations |
 
-Applied workflows include `ecc:ecc-guide`, `ecc:orch-fix-defect` with delegated regression-first implementation, `ecc:database-migrations`, `ecc:api-design`, `ecc:docker-patterns`, and `ecc:security-review`. Local final readiness evidence is recorded in the checklist; remote CI is not inferred from local success.
+Applied workflows include `ecc:ecc-guide`, `ecc:orch-fix-defect` with delegated regression-first implementation, `ecc:database-migrations`, `ecc:api-design`, `ecc:docker-patterns`, and `ecc:security-review`. Local and actual GitHub CI evidence is recorded in the checklist; remote CI is never inferred from local success.
 
 ## Work loop
 

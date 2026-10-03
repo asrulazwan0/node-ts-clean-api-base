@@ -1,6 +1,6 @@
 # Development and release tracking
 
-Status as of 2026-10-03: **candidate verified locally and in GitHub CI; source publication/adopter trial in progress**.
+Status as of 2026-10-03: **release candidate published and archive/template trial passed; stable publication preparation in progress**.
 
 This repository is intended to be a reusable TypeScript/Express/PostgreSQL starter with working native and Docker workflows. The initial audit found runtime and setup blockers despite a passing build and two passing tests. Those defects have been repaired; the tracker records current verification and remaining release gates.
 

@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-03.
 
-Overall status: **candidate verified locally and in GitHub CI; publication and adopter trial in progress**.
+Overall status: **all readiness requirements verified; release candidate published and adopter trial passed; stable preparation in progress**.
 
 This is the authoritative tracker. `[x]` means implemented and verified, with evidence below or in a linked record. `[ ]` means remaining, including work in progress. A file or dependency merely existing is not completion. Initial audit passes do not satisfy final release checks.
 
@@ -88,12 +88,12 @@ For each completed implementation item, append the candidate commit or worktree 
 
 ## Release decision
 
-- Candidate: local commit containing this tracker on `release/starter-readiness`, authorized on 2026-10-03 (`git log -1 --format=%H` for its exact ID). No tag selected; source snapshot verification is preliminary evidence only.
+- Verified prerelease: `v1.0.0-rc.1` at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557`; stable version `1.0.0` is being prepared with unchanged runtime code.
 - Required checklist items complete: 33 of 33; exact candidate and remote CI evidence recorded.
 - Native and Docker workflows verified: yes on Linux, with the limits recorded above.
 - Local security/readiness review complete: yes; [one expiring upstream advisory exception](dependency-security.md) remains.
 - Remote release gates: candidate CI green; private reporting and template enabled; strict main protection applied (zero independent approvals for the sole-maintainer repository).
-- Publishing: pending source release/adopter trial. Application deployment: outside scope.
+- Publishing: RC source release and archive/template trial complete; stable publication pending. Application deployment: outside scope.
 
 Do not mark this starter release-ready until R01–R33 are verified, or a requirement is explicitly revised with a documented reason and equivalent acceptance evidence.
 
