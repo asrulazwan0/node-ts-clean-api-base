@@ -35,7 +35,7 @@ Document checks that could not run. A compilation pass does not establish runtim
 
 The initial supported baseline is Node.js 24, npm 11, and PostgreSQL 16. Other Node/PostgreSQL major versions and package managers are not part of the initial verification contract. Platform verification is recorded in [the release checklist](docs/release-checklist.md); POSIX command examples do not constitute Windows/macOS test evidence.
 
-Until the first verified release, changes on the development branch may be incompatible. After release, maintainers target the latest published release; no older release line or response-time commitment is implied. Record API/schema/environment changes and upgrade steps in [CHANGELOG.md](CHANGELOG.md).
+Maintainers target the latest published release; no older release line or response-time commitment is implied. Record API/schema/environment changes and upgrade steps in [CHANGELOG.md](CHANGELOG.md).
 
 Review dependency update pull requests through the full relevant CI checks. Group routine compatible updates where useful, but review runtime/database major updates explicitly. A dependency scan is one input to review, not proof that the application is secure.
 

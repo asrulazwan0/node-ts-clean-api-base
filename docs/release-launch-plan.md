@@ -1,6 +1,6 @@
 # First public release launch plan
 
-Prepared: 2026-10-03. Status: execution authorized; candidate verification complete; source publication/adopter trial in progress.
+Prepared: 2026-10-03. Status: release candidate published and adopter trial passed; stable publication preparation in progress.
 
 This document plans publication of the implemented starter. [Release scope](release-plan.md) defines its features; [the readiness tracker](release-checklist.md) remains authoritative for acceptance. The current local implementation candidate is `48a6812` on `release/starter-readiness`.
 
@@ -66,21 +66,21 @@ These are repository-setting changes and require authorization. A 404 inspection
 
 ### 4. Publish and try the release candidate
 
-- [ ] Merge only after required candidate checks and review pass; inspect CI for the resulting `main` commit.
-- [ ] Recheck [the dependency exception](dependency-security.md) at publication time. Its current deadline is 2026-11-03; an expired exception or new finding blocks this plan until reviewed/resolved.
-- [ ] Draft release notes covering purpose, stack, example API, native/Docker quickstarts, compatibility, verification limits, and the exact advisory exception.
-- [ ] With explicit publication authorization, tag the verified commit `v1.0.0-rc.1` and publish it as a prerelease.
-- [ ] Download its source archive and follow both documented startup modes from a fresh directory.
-- [ ] Create a disposable repository through “Use this template” and verify initialization, environment examples, migrations, tests, and build. Delete only that owned trial repository after approval or retain it as a documented example.
+- [x] Merge only after required candidate checks and review pass; inspect CI for the resulting `main` commit.
+- [x] Recheck [the dependency exception](dependency-security.md) at publication time. Its current deadline is 2026-11-03; an expired exception or new finding blocks this plan until reviewed/resolved.
+- [x] Draft release notes covering purpose, stack, example API, native/Docker quickstarts, compatibility, verification limits, and the exact advisory exception.
+- [x] With explicit publication authorization, tag the verified commit `v1.0.0-rc.1` and publish it as a prerelease.
+- [x] Download its source archive and follow both documented startup modes from a fresh directory.
+- [x] Create a disposable repository through “Use this template” and verify initialization, environment examples, migrations, tests, and build. Delete only that owned trial repository after approval or retain it as a documented example.
 
 The trial validates what a new adopter receives, including template-specific setup. Record findings in issues and focused follow-up commits rather than changing an already published tag.
 
 ### 5. Promote to the first stable release
 
-- [ ] Resolve every release-blocking trial issue; do not expand scope with optional authentication or business features.
-- [ ] Update package/lockfile to `1.0.0`, finalize its dated changelog, and update security/version documentation.
+- [x] Resolve every release-blocking trial issue (none found); do not expand scope with optional authentication or business features.
+- [x] Update package/lockfile to `1.0.0`, finalize its dated changelog, and update security/version documentation.
 - [ ] Review and commit the stable preparation; run the required checks on its exact commit.
-- [ ] Confirm R01–R33 and the repository release settings are complete; record any explicitly accepted limitations.
+- [x] Confirm R01–R33 and the repository release settings are complete; record any explicitly accepted limitations.
 - [ ] With publication authorization, tag the verified commit `v1.0.0` and publish the GitHub release.
 - [ ] Verify the published source archive, release notes, template entry point, and native/Docker quickstarts; record links and commit SHA.
 
@@ -102,3 +102,5 @@ The user approved executing this source release plan on 2026-10-03, including ca
 2026-10-03: owner-scoped GitHub credentials verified with ADMIN access. Template mode enabled, accurate description applied, and private vulnerability reporting enabled (API reports `enabled: true`). `npm run check` passed for release-candidate preparation (64 unit and 15 HTTP tests, formatting, lint, types, build). These are current changes; the inspection table above preserves the pre-execution snapshot.
 
 2026-10-03: candidate `49e362cb66a249118bb53416f6f8ce5f2aecfa12` passed all seven [CI checks](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37128774175) and clean-checkout native/Docker-development validation. Main protection is active with the sole-maintainer approval-count decision documented above. R01–R33 are satisfied; publication and adopter trial remain.
+
+2026-10-03: [RC release](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v1.0.0-rc.1) published at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557` after main CI passed. Published archive and privately generated template each passed native/Docker adopter smoke and quality checks. The validation repository is retained privately and archived with Actions disabled. Stable runtime behavior is unchanged.

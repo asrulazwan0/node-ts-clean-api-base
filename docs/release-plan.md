@@ -1,6 +1,6 @@
 # Stable starter release plan
 
-Status: core implementation completed locally; final candidate and repository release gates remain. See the release checklist for verified evidence and pending work.
+Status: implementation and candidate verification complete, release candidate published, archive/template adopter trial passed. Stable metadata/publication checks are tracked in the launch plan.
 
 The proposed GitHub release-candidate and stable publication sequence is recorded in [release-launch-plan.md](release-launch-plan.md), including the current repository inspection and remaining external gates.
 
