@@ -1,6 +1,6 @@
 # First public release launch plan
 
-Prepared: 2026-10-03. Status: release candidate published and adopter trial passed; stable publication preparation in progress.
+Prepared: 2026-10-03. Status: complete — release candidate and stable source releases published; archive/template adopter trials passed.
 
 This document plans publication of the implemented starter. [Release scope](release-plan.md) defines its features; [the readiness tracker](release-checklist.md) remains authoritative for acceptance. The current local implementation candidate is `48a6812` on `release/starter-readiness`.
 
@@ -79,10 +79,10 @@ The trial validates what a new adopter receives, including template-specific set
 
 - [x] Resolve every release-blocking trial issue (none found); do not expand scope with optional authentication or business features.
 - [x] Update package/lockfile to `1.0.0`, finalize its dated changelog, and update security/version documentation.
-- [ ] Review and commit the stable preparation; run the required checks on its exact commit.
+- [x] Review and commit the stable preparation; run the required checks on its exact commit.
 - [x] Confirm R01–R33 and the repository release settings are complete; record any explicitly accepted limitations.
-- [ ] With publication authorization, tag the verified commit `v1.0.0` and publish the GitHub release.
-- [ ] Verify the published source archive, release notes, template entry point, and native/Docker quickstarts; record links and commit SHA.
+- [x] With publication authorization, tag the verified commit `v1.0.0` and publish the GitHub release.
+- [x] Verify the published source archive, release notes, template entry point, and native/Docker quickstarts; record links and commit SHA.
 
 ## Release notes outline
 
@@ -104,3 +104,5 @@ The user approved executing this source release plan on 2026-10-03, including ca
 2026-10-03: candidate `49e362cb66a249118bb53416f6f8ce5f2aecfa12` passed all seven [CI checks](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37128774175) and clean-checkout native/Docker-development validation. Main protection is active with the sole-maintainer approval-count decision documented above. R01–R33 are satisfied; publication and adopter trial remain.
 
 2026-10-03: [RC release](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v1.0.0-rc.1) published at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557` after main CI passed. Published archive and privately generated template each passed native/Docker adopter smoke and quality checks. The validation repository is retained privately and archived with Actions disabled. Stable runtime behavior is unchanged.
+
+2026-10-03: [stable v1.0.0](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v1.0.0) published at `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4` after [all seven main checks](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37129975818) passed. Its published archive matched the tag and passed native/Docker adopter checks. Final limitations and cleanup are recorded in verification evidence.

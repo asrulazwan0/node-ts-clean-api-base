@@ -8,7 +8,7 @@ No changes recorded yet.
 
 ## 1.0.0 — 2026-10-03
 
-The first stable source/template baseline promotes the verified `1.0.0-rc.1` application without changing runtime behavior. Release-candidate CI, native/Docker checks, published archive, and template adoption evidence are recorded in [verification evidence](docs/verification-evidence.md). Stable publication requires passing checks on its final commit.
+The first stable source/template baseline promotes the verified `1.0.0-rc.1` application without changing runtime behavior. Release-candidate CI, native/Docker checks, published archive, and template adoption evidence are recorded in [verification evidence](docs/verification-evidence.md). The tagged stable commit passed all seven GitHub checks; its published archive passed native/Docker adoption checks.
 
 The features, fixes, compatibility notes, and dependency exception below apply to this stable baseline. No npm package, public registry image, or hosted application is distributed.
 
