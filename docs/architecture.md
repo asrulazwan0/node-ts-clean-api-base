@@ -25,12 +25,24 @@ For example, to add a project-creation endpoint:
 2. Implement an application use case that accepts input and depends on that repository interface. Unit-test the domain rules and use-case decisions with an in-memory repository.
 3. Add a TypeORM entity, mapper, and repository implementation. Preserve stored identity and timestamps when reconstituting entities. Translate database constraint failures into appropriate shared errors.
 4. Generate and review a migration using `npm run migration:generate -- AddProjects`. Run it against a disposable database and verify both schema and persistence behavior. Include migration files in the change.
-5. Add a Zod request schema, controller, and route. Validate the transport input and rely on domain invariants for business correctness. Map expected errors through the common HTTP mechanism.
+5. Add a Zod request schema, controller, and route. Reject NUL (`U+0000`) in text destined for PostgreSQL in both the request schema and domain invariants. Validate the transport input and rely on domain invariants for business correctness. Map expected errors through the common HTTP mechanism.
 6. Register the use case, repository, and controller in the application's dependency container. Add an HTTP test proving the route resolves and executes through that wiring.
 7. Update [OpenAPI](../openapi.json), add a working request example, and test malformed input, domain rejection, persistence failure, and applicable uniqueness races.
 8. Run contributor checks and database integration tests. Record migration/compatibility notes in the changelog.
 
 Choose dependency names deliberately; a constructor parameter and its container registration must agree under the selected injection style. Do not cast through `any` to silence a wiring mismatch.
+
+## Mounted route logging
+
+Wrap mounted routers with `logRouter` from `src/infrastructure/middleware/request-logger.middleware.ts`:
+
+```typescript
+app.use('/projects', logRouter('/projects', projectsRouter));
+```
+
+Pass the configured mount pattern. For a nested router mounted under `/teams/:teamId/projects`, pass that full pattern to its wrapper. Completion logs then record `/teams/:teamId/projects/:id`, preserving route parameters as placeholders. Never pass `req.baseUrl`, `req.originalUrl`, or other request input as the pattern: those can contain identifiers and secrets. Direct application routes keep their configured patterns; unwrapped routers retain Express's local route pattern.
+
+The wrapper captures patterns before router context unwinds, including forwarded errors. Nested wrappers preserve the innermost complete pattern, and a router that falls through leaves later routes' logging intact. Request IDs, generic errors, and omission of raw URLs, query strings, headers, and bodies remain part of the logging contract.
 
 ## Persistence boundaries
 
