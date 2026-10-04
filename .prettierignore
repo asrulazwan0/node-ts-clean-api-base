@@ -4,6 +4,3 @@ dist
 coverage
 package-lock.json
 docs/archive
-.agent
-note.md
-Implementation Plan.md

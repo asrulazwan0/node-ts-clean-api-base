@@ -13,13 +13,12 @@ This repository is intended to be a reusable TypeScript/Express/PostgreSQL start
 | [Release launch plan](docs/release-launch-plan.md)            | GitHub inspection, candidate/stable versions, CI, template setup, and publication sequence |
 | [Development workflow](docs/development-workflow.md)          | Native, hybrid, Docker development/testing/production requirements and planned commands    |
 | [Release checklist](docs/release-checklist.md)                | Authoritative task status, finding IDs, acceptance requirements, and evidence log          |
-| [ECC workflow](docs/ecc-workflow.md)                          | Installed skill mapping and the implementation/review process                              |
 | [Task-demo adoption audit](docs/adoption-audit-2026-10-04.md) | Independent reuse verification and post-release hardening findings                         |
 
 The [v1.0.1 patch tracker](docs/release-v1.0.1.md) records the completed adoption-fix release. Use the release checklist for the original baseline acceptance tasks. R01–R33 are complete for the committed candidate with passing remote CI and verified repository settings. The release launch plan records completed publication and adopter trials.
 
-Docker may be used for development and testing. The starter must also run directly with Node.js and PostgreSQL without requiring Docker or ECC.
+Docker may be used for development and testing. The starter must also run directly with Node.js and PostgreSQL without requiring Docker.
 
 ## Historical checklist
 
-The [original checklist](docs/archive/development-checklist-initial.md) is preserved unchanged for reference. Its checked boxes recorded the presence of components, not verified release behavior. Use the release checklist above for all new progress updates.
+The [original checklist](docs/archive/development-checklist-initial.md) is preserved for reference. Its checked boxes recorded the presence of components, not verified release behavior. Use the release checklist above for all new progress updates.
