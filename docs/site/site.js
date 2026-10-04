@@ -1,4 +1,36 @@
 document.body.classList.add('js');
+const themeToggle = document.querySelector('#theme-toggle');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+const syncTheme = () => {
+  const preference = document.documentElement.dataset.theme;
+  const dark = preference === 'dark' || (!preference && systemTheme.matches);
+  themeToggle.setAttribute('aria-pressed', String(dark));
+  themeToggle.dataset.theme = dark ? 'dark' : 'light';
+  themeToggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+};
+syncTheme();
+themeToggle.hidden = false;
+themeToggle.addEventListener('click', () => {
+  const theme = themeToggle.getAttribute('aria-pressed') === 'true' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = theme;
+  syncTheme();
+  try {
+    localStorage.setItem('clean-api-docs-theme', theme);
+  } catch {
+    // The toggle still works for this page when browser storage is blocked.
+  }
+});
+systemTheme.addEventListener('change', syncTheme);
+window.addEventListener('storage', (event) => {
+  if (event.key !== 'clean-api-docs-theme' && event.key !== null) return;
+  if (event.newValue === 'light' || event.newValue === 'dark') {
+    document.documentElement.dataset.theme = event.newValue;
+  } else {
+    delete document.documentElement.dataset.theme;
+  }
+  syncTheme();
+});
+
 const menu = document.querySelector('#menu-toggle');
 menu.hidden = false;
 menu.addEventListener('click', () => {
