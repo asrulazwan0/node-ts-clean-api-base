@@ -93,3 +93,9 @@ Published on 2026-10-03: [v1.0.0](https://github.com/asrulazwan0/node-ts-clean-a
 The published stable source archive matched every tracked file at the tag, installed with `npm ci`, and passed `npm run check`. Native development environment loading/migrations/HTTP smoke and fresh-volume Docker production migration/readiness/HTTP smoke passed from that archive. Owned processes, containers, and volumes were cleaned up. The previously verified template generation remains applicable: runtime/tooling/container/CI source is unchanged, and GitHub's template entry point now serves the stable main branch.
 
 R01–R33 and the launch sequence are complete. Post-release tracker updates change only documentation and do not move the published tag. Native PostgreSQL installation/runtime smoke on macOS/Windows is still unverified, and the documented advisory exception still expires on 2026-11-03. No npm package, registry image, or application deployment was published.
+
+## v1.0.1 adoption patch
+
+Published 2026-10-04 at `6de7f11fe6d3149aacad9372d436bb0b675ef57b` after [all seven main checks](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37168869521) passed. The 104-test PostgreSQL/container suites passed. Permanent CI now verifies compiled native migration/startup/HTTP smoke/graceful shutdown and Docker startup from a byte-compared exact source archive, including NUL rejection and application license contents.
+
+The tag archive matches all 101 tracked files and independently passed installation, quality, and audit policy; the published archive matches the tested tag archive byte-for-byte. Runtime checks ran on isolated GitHub runners after the local Docker API stopped responding. Exact PRs, archive hashes, cleanup/daemon limits, and evidence paths are recorded in [the patch release record](release-v1.0.1.md). The reviewed advisory exception and macOS/Windows PostgreSQL runtime limits remain unchanged.

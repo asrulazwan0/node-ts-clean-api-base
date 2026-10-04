@@ -16,7 +16,7 @@ This repository is intended to be a reusable TypeScript/Express/PostgreSQL start
 | [ECC workflow](docs/ecc-workflow.md)                          | Installed skill mapping and the implementation/review process                              |
 | [Task-demo adoption audit](docs/adoption-audit-2026-10-04.md) | Independent reuse verification and post-release hardening findings                         |
 
-The [v1.0.1 patch tracker](docs/release-v1.0.1.md) records the current adoption-fix release. Use the release checklist for the original baseline acceptance tasks. R01–R33 are complete for the committed candidate with passing remote CI and verified repository settings. The release launch plan records completed publication and adopter trials.
+The [v1.0.1 patch tracker](docs/release-v1.0.1.md) records the completed adoption-fix release. Use the release checklist for the original baseline acceptance tasks. R01–R33 are complete for the committed candidate with passing remote CI and verified repository settings. The release launch plan records completed publication and adopter trials.
 
 Docker may be used for development and testing. The starter must also run directly with Node.js and PostgreSQL without requiring Docker or ECC.
 
