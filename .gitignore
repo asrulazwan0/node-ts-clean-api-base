@@ -58,7 +58,5 @@ tsconfig.tsbuildinfo
 
 # Personal agent/tooling files
 .agent/
-.qwen/
-QWEN.md
 note.md
 Implementation Plan.md

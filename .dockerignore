@@ -9,11 +9,9 @@ coverage
 !.env.test.example
 *.log
 .agent
-.qwen
 .codex
 .idea
 .vscode
-QWEN.md
 note.md
 Implementation Plan.md
 tmp

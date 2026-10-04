@@ -5,7 +5,7 @@
 * [x] **Project Initialization:** `pnpm init` (or `npm`) and basic `package.json`.
 * [x] **TypeScript Configuration:** * Setup `tsconfig.json` with **Path Aliases** (`@domain`, `@app`, `@infra`).
 * [x] Strict mode enabled.
-* [x] **Basic Ignore:** Standard `.gitignore` (node_modules, dist, .env, .qwen).
+* [x] **Basic Ignore:** Standard `.gitignore` (node_modules, dist, .env).
 
 ### 🟩 Phase 2: The "Clean" Skeleton (Base Pattern)
 

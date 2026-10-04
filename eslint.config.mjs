@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'node_modules/**', '.agent/**', '.qwen/**'] },
+  { ignores: ['dist/**', 'coverage/**', 'node_modules/**', '.agent/**'] },
   {
     files: ['src/**/*.ts', 'tests/**/*.ts', 'vitest.config.mts'],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
