@@ -1,6 +1,6 @@
 ### 🟦 Phase 1: Environment & Core Setup
 
-* [x] **WSL & Tooling:** Node 24, Git, and MCP servers (Github, Node, Filesystem) connected.
+* [x] **WSL & Tooling:** Node 24 and Git available.
 * [x] **Git Identity:** Author and Email correctly configured.
 * [x] **Project Initialization:** `pnpm init` (or `npm`) and basic `package.json`.
 * [x] **TypeScript Configuration:** * Setup `tsconfig.json` with **Path Aliases** (`@domain`, `@app`, `@infra`).

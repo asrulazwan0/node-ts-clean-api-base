@@ -1,6 +1,6 @@
 # Development and testing workflows
 
-The native and Docker workflows are implemented. Linux verification results and final release gates are recorded in [the release checklist](release-checklist.md) and [verification evidence](verification-evidence.md). The API requires Node.js and PostgreSQL; Docker and ECC are optional for native use.
+The native and Docker workflows are implemented. Linux verification results and final release gates are recorded in [the release checklist](release-checklist.md) and [verification evidence](verification-evidence.md). The API requires Node.js and PostgreSQL; Docker is optional for native use.
 
 ## Supported modes
 

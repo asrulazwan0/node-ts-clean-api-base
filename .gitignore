@@ -55,8 +55,3 @@ tsconfig.tsbuildinfo
 .env.*
 !.env.example
 !.env.*.example
-
-# Personal agent/tooling files
-.agent/
-note.md
-Implementation Plan.md

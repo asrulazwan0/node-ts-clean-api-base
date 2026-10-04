@@ -14,7 +14,7 @@ Package/lockfile and OpenAPI versions are `1.0.1`. Dependencies, schema migratio
 
 ## Release gates
 
-- [x] Focused fixes committed, independent ECC code/security review completed, and local native/Docker verification passed.
+- [x] Focused fixes committed, additional code/security review completed, and local native/Docker verification passed.
 - [x] Prepare package/lockfile/OpenAPI version, README, dated changelog, and this release record.
 - [x] Push the patch branch, open a protected-branch PR, and pass all seven required CI checks.
 - [x] Merge without bypassing protection and pass all seven checks on the exact resulting main commit.

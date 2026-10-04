@@ -41,4 +41,4 @@ The example is **unauthenticated** and stores profiles, not login credentials. A
 
 [v{{version}}](https://github.com/asrulazwan0/node-ts-clean-api-base/releases/tag/v{{version}}) is the current stable source release. The [changelog](../../CHANGELOG.md) explains changes; the [release checklist](../release-checklist.md) records verification and remaining limitations. The application is distributed as source and a GitHub template. Docker images are built from that source.
 
-Licensed under [ISC](../../LICENSE). Docker and ECC are optional for native application use.
+Licensed under [ISC](../../LICENSE). Docker is optional for native application use.

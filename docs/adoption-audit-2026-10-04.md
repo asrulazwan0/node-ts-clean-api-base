@@ -12,7 +12,7 @@ The demo is a working task-tracker API built on the released starter. Independen
 - Audited demo commit: `19e63cc` (`feat: adopt v1.0.0 starter as verified task tracker demo`).
 - Starter ancestor: `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4`, the exact `v1.0.0` tag target.
 - Demo Git history is preserved and its working tree was clean before and after review.
-- The audit used ECC's `production-audit` evidence/risk lenses, scoped to adoption and runtime verification.
+- The audit assessed adoption and runtime verification using observed behavior, verification evidence and risk assessment.
 - No demo source, committed evidence, configuration, dependency versions, or thresholds were changed. Builds wrote only ignored output; the reload probe touched a source file's modification time without changing its content.
 - No remote writes, commits, publication, deployment, or changes to unrelated services were performed by this audit.
 
@@ -99,7 +99,7 @@ A02 copies the application `LICENSE` into the starter's final runtime image. Fre
 
 A03 introduces `logRouter(configuredMountPattern, router)`. The demo mounts its task router through this wrapper. It records complete configured patterns, never actual mount URLs. Tests cover nested parameterized mounts, parameter-validation errors, forwarded errors, fallthrough, direct routes, unmatched requests, aliases, root mounts, trailing slashes, and request correlation. Future routers must use this wrapper with their full configured pattern; see [architecture](architecture.md#mounted-route-logging).
 
-The initial regression runs failed as expected: three starter input cases and eight demo input/logging cases. A fresh pre-fix runtime image failed to read `/app/LICENSE` with `ENOENT`. Independent ECC code/security review caught a root/trailing-slash pattern defect; three additional regressions failed before the correction. The reviewer independently reran all 13 logging regressions in each project and approved the final diff.
+The initial regression runs failed as expected: three starter input cases and eight demo input/logging cases. A fresh pre-fix runtime image failed to read `/app/LICENSE` with `ENOENT`. Additional code/security review caught a root/trailing-slash pattern defect; three additional regressions failed before the correction. The reviewer independently reran all 13 logging regressions in each project and approved the final diff.
 
 | Final check                                                   | Starter                                                                                | Task demo                                                                                                                                      |
 | ------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |

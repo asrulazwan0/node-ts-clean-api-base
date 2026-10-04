@@ -57,7 +57,7 @@ Exit: a clean checkout passes the same checks locally and in CI. Passing domain 
 
 ### M5 — Open-source release preparation
 
-Complete the quickstart, architecture/extension guide, troubleshooting, license text, contribution and security guidance, changelog, release procedure, dependency maintenance, and final ECC review.
+Complete the quickstart, architecture/extension guide, troubleshooting, license text, contribution and security guidance, changelog, release procedure, dependency maintenance, and final security/readiness review.
 
 Exit: all required checklist items have evidence; no unresolved blocker or high-priority finding remains. Record the exact candidate commit and verification results.
 
@@ -75,4 +75,4 @@ Release-ready means the candidate is prepared and verified. Publishing a release
 
 ## Execution
 
-Use [ecc-workflow.md](ecc-workflow.md) for skill selection and evidence recording. Work in milestone order; keep changes reviewable and preserve unrelated local work. Resolve routine implementation details without repeated confirmation. Record material scope changes and their reasons here.
+Follow [contributor guidance](../CONTRIBUTING.md) and [development workflows](development-workflow.md) for implementation and verification. Work in milestone order; keep changes reviewable and preserve unrelated local work. Resolve routine implementation details without repeated confirmation. Record material scope changes and their reasons here.

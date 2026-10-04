@@ -35,9 +35,9 @@ The final 86-test native/candidate run includes two additional configuration reg
 
 The first Docker test attempt exposed non-root write permissions and returned exit 1 with successful scoped cleanup. After fixing ownership, the same workflow passed; this also proved failure propagation.
 
-## ECC review
+## Implementation review
 
-`ecc:orch-fix-defect` was used for regression-first implementation with delegated runtime and persistence work. `ecc:database-migrations`, `ecc:api-design`, `ecc:docker-patterns`, and `ecc:security-review` supplied the implementation/review lenses. The initial/final readiness assessment follows `ecc:production-audit`.
+Regression-first implementation covered runtime wiring and persistence. Review assessed database migrations, API behavior, container workflows, and security against the recorded verification evidence.
 
 No remaining locally reproduced runtime/data-integrity blocker was found after the fixes. The unresolved glob-parser advisory has no patched release and is not reachable from HTTP input under the current explicit registration/build setup; its narrowly scoped exception expires on 2026-11-03. See [dependency security](dependency-security.md). This is not a clean raw dependency audit.
 

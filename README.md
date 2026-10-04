@@ -144,7 +144,7 @@ npm run test:docker
 
 After using this repository as a template, update the package name, description, repository/bugs/homepage URLs, author details, changelog, and documentation links. Regenerate lockfile metadata when changing package metadata. Review the license and retain required notices. Supply your own deployment configuration and private vulnerability-reporting channel.
 
-Read [architecture and adding a feature](docs/architecture.md), [contributor guidance](CONTRIBUTING.md), [security policy](SECURITY.md), and [operations/release procedure](docs/operations.md). Maintainer implementation history lives in [development tracking](development.md); ECC is not required to use or contribute to the starter.
+Read [architecture and adding a feature](docs/architecture.md), [contributor guidance](CONTRIBUTING.md), [security policy](SECURITY.md), and [operations/release procedure](docs/operations.md). Development and release records are available in [development tracking](development.md).
 
 Dependency audit status and the current upstream exception are documented in [dependency security](docs/dependency-security.md).
 
