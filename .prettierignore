@@ -5,7 +5,5 @@ coverage
 package-lock.json
 docs/archive
 .agent
-.qwen
-QWEN.md
 note.md
 Implementation Plan.md
