@@ -11,6 +11,8 @@ npm ci
 cp .env.example .env
 ```
 
+The release tag is a fixed revision. Create a working branch with `git switch -c my-project` before changing the code.
+
 Choose your workflow in the [quickstart](../../README.md). For native development, provision PostgreSQL and update `.env` before running migrations. For the full Docker stack, Compose provides the database and runs migrations before starting the API.
 
 | Workflow | What you need                                 | Start here                                             |

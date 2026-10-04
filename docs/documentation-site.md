@@ -6,6 +6,8 @@ The documentation site lives at <https://asrulazwan0.github.io/node-ts-clean-api
 
 The quickstart, architecture, workflows, operations, contribution, changelog, security, and dependency pages use existing repository Markdown as their source. The overview is in `docs/site/index.md`. The API reference is generated from `openapi.json`; the unchanged specification is also available for download.
 
+Run the website commands from a checkout of `main` containing the website tooling. The stable `v1.0.1` application tag predates this documentation site.
+
 ```bash
 npm ci
 npm run docs:build

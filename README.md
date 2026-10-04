@@ -27,6 +27,8 @@ npm ci
 cp .env.example .env
 ```
 
+Cloning a release tag checks out a fixed revision. Before making changes, create a working branch with `git switch -c my-project`. GitHub's **Use this template** button instead creates a repository from the current `main` branch.
+
 Edit `.env` with your database settings. `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_NAME` select the database. `DATABASE_URL` is not supported. Shell/deployment environment variables take precedence over values loaded from `.env`.
 
 ```bash
