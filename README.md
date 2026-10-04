@@ -2,7 +2,7 @@
 
 A small Express API foundation with TypeScript, PostgreSQL, TypeORM, Awilix, Zod, Pino, and Vitest. Use native Node.js or Docker for development and deployment. Docker is optional when you supply PostgreSQL yourself.
 
-**Stable baseline:** `1.0.0`. [The release checklist](docs/release-checklist.md) records verification evidence; [GitHub releases](https://github.com/asrulazwan0/node-ts-clean-api-base/releases) records published versions.
+**Stable baseline:** `1.0.1`. [The release checklist](docs/release-checklist.md) records verification evidence; [GitHub releases](https://github.com/asrulazwan0/node-ts-clean-api-base/releases) records published versions.
 
 ## Included
 
