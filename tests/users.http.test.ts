@@ -48,6 +48,8 @@ describe('POST /users', () => {
   });
   it.each([
     { email: 'bad', name: 'Alice' },
+    { email: 'nul\0@example.com', name: 'Alice' },
+    { email: 'alice@example.com', name: 'NUL\0name' },
     { email: 'alice@example.com', name: ' ' },
     { email: 'alice@example.com', name: 'x'.repeat(101) },
     { email: 'alice@example.com', name: 'Alice', password: 'secret' },
@@ -62,6 +64,7 @@ describe('POST /users', () => {
       error: { code: 'VALIDATION_ERROR', details: expect.any(Array) },
     });
     expect(response.body.error.details.length).toBeGreaterThan(0);
+    expect(userRepository.findByEmail).not.toHaveBeenCalled();
     expect(userRepository.save).not.toHaveBeenCalled();
   });
   it('returns documented conflict', async () => {

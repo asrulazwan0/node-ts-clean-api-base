@@ -26,11 +26,18 @@ export class User {
   public static create(props: IUserProps, id?: string): Result<User> {
     const email = props.email.trim().toLowerCase();
     const name = props.name.trim();
-    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email.includes('\0') || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return Result.failure({
         code: 'VALIDATION_ERROR',
         message: 'Invalid email address',
         details: [{ field: 'email', message: 'Invalid email address' }],
+      });
+    }
+    if (name.includes('\0')) {
+      return Result.failure({
+        code: 'VALIDATION_ERROR',
+        message: 'Name must not contain NUL characters',
+        details: [{ field: 'name', message: 'Name must not contain NUL characters' }],
       });
     }
     if (name.length === 0 || name.length > 100) {

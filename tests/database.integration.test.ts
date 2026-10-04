@@ -104,6 +104,16 @@ describe('PostgreSQL migration and API lifecycle', () => {
       data: { id: user.data.id, createdAt, updatedAt },
     });
   });
+  it('rejects NUL profile text without inserting a PostgreSQL row', async () => {
+    const email = 'nul-rejected@example.com';
+    const response = await request(app).post('/users').send({ email, name: 'NUL\0name' });
+    expect(response.status).toBe(400);
+    expect(response.body.error).toMatchObject({
+      code: 'VALIDATION_ERROR',
+      details: [{ field: 'name', message: expect.any(String) }],
+    });
+    expect(await repository.findByEmail(email)).toEqual({ success: true, data: null });
+  });
   it('serves creation and sequential normalized duplicate conflict', async () => {
     const created = await request(app)
       .post('/users')
