@@ -14,6 +14,8 @@ describe('User profile', () => {
 
   it.each([
     { email: 'invalid', name: 'User' },
+    { email: 'nul\0@example.com', name: 'User' },
+    { email: 'a@example.com', name: 'NUL\0name' },
     { email: 'a@example.com', name: '   ' },
     { email: 'a@example.com', name: 'x'.repeat(101) },
   ])('rejects invalid profile %j', (input) => {

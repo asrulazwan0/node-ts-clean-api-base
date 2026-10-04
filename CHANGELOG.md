@@ -6,6 +6,16 @@ Changes are recorded here before a release is tagged. The existing package versi
 
 No changes recorded yet.
 
+## 1.0.1 — 2026-10-04
+
+### Fixed
+
+- Reject NUL characters in profile names at HTTP/domain boundaries and in domain email validation before persistence.
+- Include the unchanged ISC application license in the production Docker image.
+- Provide safe mounted-router completion logging through `logRouter`, including nested routes, errors, and fallthrough.
+
+Regression and PostgreSQL verification for these adoption findings are tracked in [the adoption audit](docs/adoption-audit-2026-10-04.md). This patch follows independent task-demo adoption and retains the documented dependency exception. Dependencies, migrations, and the supported stack are unchanged; `logRouter` is opt-in for mounted routers.
+
 ## 1.0.0 — 2026-10-03
 
 The first stable source/template baseline promotes the verified `1.0.0-rc.1` application without changing runtime behavior. Release-candidate CI, native/Docker checks, published archive, and template adoption evidence are recorded in [verification evidence](docs/verification-evidence.md). The tagged stable commit passed all seven GitHub checks; its published archive passed native/Docker adoption checks.

@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "TypeScript Clean API Starter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Minimal user-profile creation example. Authentication and credentials are outside this starter. JSON error responses use stable codes; health checks use a status object."
   },
   "servers": [
@@ -33,7 +33,8 @@
                   "name": {
                     "type": "string",
                     "minLength": 1,
-                    "maxLength": 100
+                    "maxLength": 100,
+                    "pattern": "^[^\\u0000]*$"
                   }
                 }
               },
@@ -239,7 +240,8 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 100
+            "maxLength": 100,
+            "pattern": "^[^\\u0000]*$"
           },
           "createdAt": {
             "type": "string",
