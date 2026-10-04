@@ -4,7 +4,7 @@ Changes are recorded here before a release is tagged. The existing package versi
 
 ## Unreleased
 
-No changes recorded yet.
+- Add a GitHub Pages documentation website with search, native/Docker quickstarts, architecture, operations, security, and an API reference generated from OpenAPI. Documentation publication does not change the stable application release.
 
 ## 1.0.1 — 2026-10-04
 

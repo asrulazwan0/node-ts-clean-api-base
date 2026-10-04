@@ -4,6 +4,8 @@ A small Express API foundation with TypeScript, PostgreSQL, TypeORM, Awilix, Zod
 
 **Stable baseline:** `1.0.1`. [The release checklist](docs/release-checklist.md) records verification evidence; [GitHub releases](https://github.com/asrulazwan0/node-ts-clean-api-base/releases) records published versions.
 
+Read the [documentation website](https://asrulazwan0.github.io/node-ts-clean-api-base/) for searchable guides and the generated API reference. Website maintenance is documented in [documentation-site.md](docs/documentation-site.md).
+
 ## Included
 
 - Domain/application/infrastructure separation and dependency injection.
@@ -19,11 +21,13 @@ This starter has **no authentication or authorization**. The user example stores
 Requirements: Node.js 24, npm 11, and a reachable PostgreSQL 16 database. Install/provision PostgreSQL and create a database owned by your application role first; no Docker commands are needed for this path.
 
 ```bash
-git clone https://github.com/asrulazwan0/node-ts-clean-api-base.git
+git clone --branch v1.0.1 https://github.com/asrulazwan0/node-ts-clean-api-base.git
 cd node-ts-clean-api-base
 npm ci
 cp .env.example .env
 ```
+
+Cloning a release tag checks out a fixed revision. Before making changes, create a working branch with `git switch -c my-project`. GitHub's **Use this template** button instead creates a repository from the current `main` branch.
 
 Edit `.env` with your database settings. `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, and `DB_NAME` select the database. `DATABASE_URL` is not supported. Shell/deployment environment variables take precedence over values loaded from `.env`.
 
