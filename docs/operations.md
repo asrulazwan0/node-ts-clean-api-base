@@ -1,6 +1,6 @@
 # Operations and release procedure
 
-This document describes the source starter and its buildable container. It does not claim that a public image, deployed service, or tagged release exists. [The release checklist](release-checklist.md) records actual verification and external settings.
+This document describes the source starter and its buildable container. Stable source releases are published on [GitHub](https://github.com/asrulazwan0/node-ts-clean-api-base/releases); projects build their own images and deploy their own API. [The release checklist](release-checklist.md) records actual verification and external settings.
 
 ## Configuration
 

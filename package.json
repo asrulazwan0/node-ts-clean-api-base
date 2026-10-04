@@ -24,7 +24,9 @@
     "migration:run:prod": "node --env-file-if-exists=.env dist/infrastructure/database/cli.js run",
     "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:run && npm run test:http && npm run build",
     "smoke": "node scripts/smoke.mjs",
-    "audit": "node scripts/audit.mjs"
+    "audit": "node scripts/audit.mjs",
+    "docs:build": "node scripts/docs-build.mjs",
+    "docs:preview": "node scripts/docs-preview.mjs"
   },
   "repository": {
     "type": "git",
@@ -44,7 +46,7 @@
   "bugs": {
     "url": "https://github.com/asrulazwan0/node-ts-clean-api-base/issues"
   },
-  "homepage": "https://github.com/asrulazwan0/node-ts-clean-api-base#readme",
+  "homepage": "https://asrulazwan0.github.io/node-ts-clean-api-base/",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/cors": "^2.8.19",
@@ -53,6 +55,7 @@
     "@types/supertest": "^7.2.1",
     "@vitest/coverage-v8": "^4.0.17",
     "eslint": "^10.12.0",
+    "marked": "18.0.14",
     "prettier": "^3.9.9",
     "supertest": "^7.3.1",
     "tsc-alias": "^1.8.16",
