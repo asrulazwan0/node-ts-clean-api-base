@@ -16,7 +16,9 @@ npm run docs:preview
 
 Open <http://127.0.0.1:4173/node-ts-clean-api-base/>. Node.js 24 and npm 11 are sufficient. Neither PostgreSQL nor Docker is needed for the website. `DOCS_PORT` changes the local preview port.
 
-The build writes ignored output to `.site/` and checks generated internal links, assets, duplicate IDs, and section anchors. Markdown links to pages outside the website open their source on GitHub. Website navigation and document content work without JavaScript; JavaScript adds search, code copying, and a compact mobile menu. No external scripts or fonts are required.
+The build writes ignored output to `.site/` and checks generated internal links, assets, duplicate IDs, and section anchors. Markdown links to pages outside the website open their source on GitHub. Website navigation and document content work without JavaScript; JavaScript adds search, code copying, a theme toggle, and a compact mobile menu. No external scripts or fonts are required.
+
+The header's moon/sun button toggles dark mode. The site follows the system color preference until a visitor chooses a theme; that choice is saved under `clean-api-docs-theme` in local storage and shared across pages and tabs. `docs/site/theme.js` restores saved choices before styles load. If storage is blocked, the toggle still works on the current page. With JavaScript disabled, colors follow the system preference and the toggle is hidden. Print output uses light colors.
 
 `scripts/docs-config.mjs` defines the navigation and source mappings. `docs/site/site.css` and `docs/site/site.js` define the presentation and enhancements. `marked` is a development dependency and is removed from the production API image with other development dependencies.
 
@@ -38,6 +40,8 @@ Local verification on 2026-10-04 covered:
 - `npm run check` and the existing dependency-policy audit; the documented upstream exception remains unchanged.
 
 GitHub Actions records the documentation build, deployment, and existing application checks for the publishing commit. Publication verification must additionally check the live URL after deployment.
+
+Dark mode verification on 2026-10-04 checked all ten pages in both themes at 1440, 390, and 320 pixels, keyboard toggling, system preference changes, saved choices across navigation/reloads/tabs, blocked storage, JavaScript-disabled colors, and light print output. Automated axe checks in both themes at desktop and 320 pixels reported no selected WCAG A/AA violations.
 
 ## Projects created from this template
 

@@ -4,6 +4,8 @@ Changes are recorded here before a release is tagged. The existing package versi
 
 ## Unreleased
 
+- Add a keyboard-accessible dark mode toggle to the documentation website, with system preference defaults, saved choices, and dark styles for navigation, search, tables, and code examples.
+
 - Add a GitHub Pages documentation website with search, native/Docker quickstarts, architecture, operations, security, and an API reference generated from OpenAPI. Documentation publication does not change the stable application release.
 
 ## 1.0.1 — 2026-10-04
