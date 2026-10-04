@@ -91,7 +91,7 @@ The existing dependency advisory exception remains a limitation; its deadline is
 
 ## Repair verification — 2026-10-04
 
-The repairs are on local `fix/adoption-hardening` branches in both repositories. Remote `main` and the published `v1.0.0` release have not been updated. No package version, dependency resolution, schema migration, or coverage threshold changed.
+The repairs are on local `fix/adoption-hardening` branches in both repositories. This paragraph records the pre-release repair snapshot. The subsequent [v1.0.1 release record](release-v1.0.1.md) records remote merge/publication; the `v1.0.0` tag remains immutable. No package version, dependency resolution, schema migration, or coverage threshold changed.
 
 A01 now rejects NUL at the HTTP and domain boundaries. Profile domain email validation also rejects NUL; task creation and partial updates share the title invariant. Invalid input returns `400 VALIDATION_ERROR` with a field detail before repository work. Real PostgreSQL tests confirm no rejected profile is inserted and a rejected task update leaves the entire stored record unchanged. Unicode and line breaks remain accepted in task titles. OpenAPI request and response schemas declare the NUL restriction.
 
@@ -117,4 +117,4 @@ Local evidence: `/tmp/starter-hardening-red.log`, `/tmp/demo-hardening-red.log`,
 
 Local source commits: starter `031e13b` (validation), `dd0ceff` (logging), and `9b9de2e` (runtime license); demo `208ea6e` (validation) and `4e8980f` (logging). Documentation is committed separately so these implementation changes remain focused.
 
-Next release work: submit the starter patch through its protected-branch PR/CI process, and publish a verified patch release. The existing dependency advisory exception and earlier platform-verification limits still apply.
+Release follow-up is complete: the starter fixes were merged through protected PR/CI and published in [v1.0.1](release-v1.0.1.md). The consuming demo remains locally committed and was not pushed. The existing dependency advisory exception and earlier platform-verification limits still apply.

@@ -88,7 +88,8 @@ For each completed implementation item, append the candidate commit or worktree 
 
 ## Release decision
 
-- Stable release: `v1.0.0` at `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4`; prerelease `v1.0.0-rc.1` retained at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557`.
+- Latest stable patch: [v1.0.1](release-v1.0.1.md) at `6de7f11fe6d3149aacad9372d436bb0b675ef57b`, with all seven exact-main CI checks and tag-archive/native/Docker verification.
+- Initial stable release: `v1.0.0` at `c2acdfaf3ec1cf6df8c1457244b5e907a335c3c4`; prerelease `v1.0.0-rc.1` retained at `a9f79ef063b3673da34b0dd34f70b8c03b9cb557`.
 - Required checklist items complete: 33 of 33; exact candidate and remote CI evidence recorded.
 - Native and Docker workflows verified: yes on Linux, with the limits recorded above.
 - Local security/readiness review complete: yes; [one expiring upstream advisory exception](dependency-security.md) remains.
