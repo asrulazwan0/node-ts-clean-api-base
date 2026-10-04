@@ -33,4 +33,8 @@ Full native PostgreSQL installation/runtime on macOS/Windows remains unverified.
 
 ## Execution evidence
 
+PR [#12](https://github.com/asrulazwan0/node-ts-clean-api-base/pull/12) merged the patch at `28ea187ac27b635a4cb2f81034309b69e468c1a9`. Its [PR CI](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37168214184) and [main CI](https://github.com/asrulazwan0/node-ts-clean-api-base/actions/runs/37168371895) both passed all seven checks, including 104 tests in PostgreSQL/container coverage.
+
+A detached fresh checkout passed `npm ci`, `npm run check`, and `npm run audit`. Local Docker's API then stopped responding, so that local runtime attempt is incomplete. Release verification continues on isolated GitHub runners: CI now exercises compiled native migrations/startup/smoke/graceful shutdown, downloads and byte-compares its exact commit archive, runs production Docker from that archive, and checks NUL rejection plus the exact runtime license. These are equivalent acceptance checks performed independently of the local daemon. This change does not authorize restarting shared local services.
+
 Release work is in progress. Existing `v1.0.0` remains immutable.

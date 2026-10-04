@@ -26,7 +26,24 @@ assert.equal(
   (await request('/users', { ...init, body: JSON.stringify({ email: 'bad', name: ' ' }) })).status,
   400,
 );
+const nulProfile = { email: `nul-${randomUUID()}@example.test`, name: 'NUL\0Name' };
+const nulResponse = await request('/users', { ...init, body: JSON.stringify(nulProfile) });
+assert.equal(nulResponse.status, 400);
+const nulError = await nulResponse.json();
+assert.equal(nulError.error.code, 'VALIDATION_ERROR');
+assert.equal(nulError.error.details[0].field, 'name');
+assert.equal(
+  (
+    await request('/users', {
+      ...init,
+      body: JSON.stringify({ ...nulProfile, name: 'Valid Name' }),
+    })
+  ).status,
+  201,
+);
 const missing = await request('/missing');
 assert.equal(missing.status, 404);
 assert.match(missing.headers.get('content-type'), /application\/json/);
-console.log('Smoke checks passed: liveness, readiness, creation, conflict, validation, JSON 404.');
+console.log(
+  'Smoke checks passed: liveness, readiness, creation, conflict, validation, NUL rejection without insertion, JSON 404.',
+);

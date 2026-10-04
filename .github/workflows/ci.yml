@@ -48,6 +48,40 @@ jobs:
       - run: npm run check
       - run: npm run test:coverage
       - run: npm run audit
+      - name: Compiled native startup, migration, smoke, and graceful shutdown
+        env:
+          NODE_ENV: production
+          PORT: 3301
+          SMOKE_BASE_URL: http://127.0.0.1:3301
+          DB_HOST: ${{ env.TEST_DB_HOST }}
+          DB_PORT: ${{ env.TEST_DB_PORT }}
+          DB_USERNAME: ${{ env.TEST_DB_USERNAME }}
+          DB_PASSWORD: ${{ env.TEST_DB_PASSWORD }}
+          DB_NAME: ${{ env.TEST_DB_NAME }}
+          LOG_LEVEL: silent
+        run: |
+          node dist/infrastructure/database/cli.js run
+          node dist/index.js > "$RUNNER_TEMP/native-server.log" 2>&1 &
+          native_pid=$!
+          trap 'kill -TERM "$native_pid" 2>/dev/null || true; wait "$native_pid" 2>/dev/null || true' EXIT
+          node --input-type=module <<'JS'
+          import { setTimeout } from 'node:timers/promises';
+          let ready = false;
+          for (let attempt = 0; attempt < 40; attempt++) {
+            try {
+              const response = await fetch(process.env.SMOKE_BASE_URL + '/health/ready', {
+                signal: AbortSignal.timeout(2000),
+              });
+              if (response.ok) { ready = true; break; }
+            } catch {}
+            await setTimeout(250);
+          }
+          if (!ready) throw new Error('Native readiness timeout');
+          JS
+          npm run smoke
+          kill -TERM "$native_pid"
+          wait "$native_pid"
+          trap - EXIT
 
   native:
     name: Native tests (${{ matrix.os }})
@@ -87,15 +121,32 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
+      - name: Download and compare the exact source archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/tarball/$GITHUB_SHA" > "$RUNNER_TEMP/source.tar.gz"
+          mkdir "$RUNNER_TEMP/release-source"
+          tar -xzf "$RUNNER_TEMP/source.tar.gz" --strip-components=1 -C "$RUNNER_TEMP/release-source"
+          git ls-files -z | while IFS= read -r -d '' tracked_file; do
+            cmp "$tracked_file" "$RUNNER_TEMP/release-source/$tracked_file"
+          done
       - name: Build, migrate, and await readiness on a fresh database
+        working-directory: ${{ runner.temp }}/release-source
         run: docker compose --env-file .env.example up --build --wait --wait-timeout 180
       - run: npm run smoke
+        working-directory: ${{ runner.temp }}/release-source
+      - name: Verify the runtime contains the exact application license
+        working-directory: ${{ runner.temp }}/release-source
+        run: docker compose --env-file .env.example exec -T app cat /app/LICENSE | cmp - LICENSE
       - name: Show service status and logs
+        working-directory: ${{ runner.temp }}/release-source
         if: always()
         run: |
           docker compose --env-file .env.example ps --all
           docker compose --env-file .env.example logs --no-color
       - name: Remove only this job's disposable stack
+        working-directory: ${{ runner.temp }}/release-source
         if: always()
         run: docker compose --env-file .env.example down --volumes --remove-orphans
 
